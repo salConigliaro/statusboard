@@ -62,4 +62,4 @@ Then add a DIY panel to StatusBoard (go into Edit Mode by tapping the 'gear' ico
 
 Then tap the DIY panel and select either DropBox or URL under 'Data Source'. If you're using a webserver, then enter the URL to the 'index.html' file that you uploaded. For DropBox, select the appropriate folder.
 
-![screenshot](https://github.com/salConigliaro/statusboard/raw/statusBoardThumb.jpg)
+![screenshot](https://github.com/salConigliaro/statusboard/blob/master/statusBoardThumb.jpg)
