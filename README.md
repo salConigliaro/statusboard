@@ -59,6 +59,8 @@ Simple install the contents of either 'detailed' or 'summary' somewhere accessib
 
 Then add a DIY panel to StatusBoard (go into Edit Mode by tapping the 'gear' icon in the upper left of the iPad's screen. Drag a DIY panel onto the board).
 
-Then tap the DIY panel and select either DropBox or URL under 'Data Source'. If you're using a webserver, then enter the URL to the 'index.html' file that you uploaded. For DropBox, select the appropriate folder.
+Then tap the DIY panel and select either DropBox or URL under 'Data Source'. 
+If you're using a webserver, enter the URL to the 'index.html' file that you uploaded. 
+For DropBox, select the appropriate folder.
 
 ![screenshot](statusBoardThumb.jpg)
