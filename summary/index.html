@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Status Board</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+		<meta http-equiv="Cache-control" content="no-cache" />
+		
+		<style type="text/css">
+			@font-face
+			{
+				font-family: "Roadgeek2005SeriesD";
+				src: url("http://panic.com/fonts/Roadgeek 2005 Series D/Roadgeek 2005 Series D.otf");
+			}
+			
+			body, *
+			{
+			
+			}
+			body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td
+			{ 
+				margin: 0;
+				padding: 0;
+			}
+				
+			fieldset,img
+			{ 
+				border: 0;
+			}
+			
+				
+			/* Settin' up the page */
+			
+			html, body, #main
+			{
+				overflow: hidden; /* */
+			}
+			
+			body
+			{
+				color: white;
+				font-family: 'Roadgeek2005SeriesD', sans-serif;
+				font-size: 20px;
+				line-height: 24px;
+			}
+			body, html, #main
+			{
+				background: transparent !important;
+			}
+			#mainContainer
+			{
+				width: 250px;
+				height: 250px;
+				text-align: center;
+			}
+			#mainContainer *
+			{
+				font-weight: normal;
+			}
+			.title {
+				font-size: 26px;
+			}
+			/*h1
+			{
+				font-size: 120px;
+				line-height: 120px;
+				margin-top: 15px;
+				margin-bottom: 28px;
+				color: white;
+				text-shadow:0px -2px 0px black;
+				text-transform: uppercase;
+			}*/
+			
+			h2
+			{
+				width: 200px;
+				margin: 5px auto;
+				padding-top: 10px;
+				font-size: 22px;
+				color: #7e7e7e;
+				text-transform: none;
+			}
+			table, td, th
+			td
+			{
+				padding-right: 10px;
+				padding-bottom: 10px;
+				line-height: 26px;
+			}
+			table {
+				margin-top: 20px;
+			    width: 50%; margin-left: auto; margin-right: auto;
+			}
+			
+@-webkit-keyframes greenPulse {
+	from { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+	50% { background-color: #91bd09; -webkit-box-shadow: 0 0 18px #91bd09; }
+	to { background-color: #749a02; -webkit-box-shadow: 0 0 9px #333; }
+}
+@-webkit-keyframes redPulse {
+	from { background-color: #BC1F18; -webkit-box-shadow: 0 0 9px #333; }
+	50% { background-color: #FF302B; -webkit-box-shadow: 0 0 18px #FF302B; }
+	to { background-color: #BC1F18; -webkit-box-shadow: 0 0 9px #333; }
+}
+
+	.greenGlow {
+		height: 45px;
+		width: 45px;
+		border-radius: 45px; 
+		-webkit-animation-name: greenPulse;
+		-webkit-animation-duration: 4s;
+		-webkit-animation-iteration-count: infinite;
+	}
+	.redGlow {
+		height: 46px;
+		width: 46px;
+		border-radius: 46px; 
+		-webkit-animation-name: redPulse;
+		-webkit-animation-duration: 4s;
+		-webkit-animation-iteration-count: infinite;
+	}
+	
+	.greenCircle{
+		width:45px;
+		height:45px;
+		border-radius:45px;
+		background-color: #00F900;
+	}
+	.redCircle{
+		width:45px;
+		height:45px;
+		border-radius:45px;
+		background-color: #FF302B;
+	}		
+</style>
+		
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+		function refresh()
+		{
+			var req = new XMLHttpRequest();
+			var servicesError = 0;
+			var storesError = 0;
+			var iCloudError = 0;
+            
+            $.get('proxy.php', function(data) {
+            
+	            ///console.log(data.dashboard.Services);
+	            
+	            // Only 3. Any more and this code needs to be re-factored.
+	            var services = data.dashboard.Services;
+	            
+	            $.each(services, function( key, value ) {
+		            if (value.length == 1) {
+		            	servicesError++;
+		            	return false;
+		            }
+		        });
+		        if (servicesError > 0)
+		        	$(".servicesCell").html('<img class="redGlow" style="vertical-align:middle" src="red_button.png">');	
+		        else
+		        	$(".servicesCell").html('<img style="vertical-align:middle" src="green_button.png">');
+		        	
+		        
+		        var stores = data.dashboard.Stores;
+	            
+	            $.each(stores, function( key, value ) {
+		            if (value.length == 1) {
+		            	storesError++;
+		            	return false;
+		            }
+		        });
+		        if (storesError > 0)
+		        	$(".storesCell").html('<img class="redGlow" style="vertical-align:middle" src="red_button.png">');
+
+		        else
+		        	$(".storesCell").html('<img style="vertical-align:middle" src="green_button.png">');
+		        	
+		        	
+		        var icloud = data.dashboard.iCloud;
+	            
+	            $.each(icloud, function( key, value ) {
+		            //console.log( key + ": " + value.length);
+		            if (value.length == 1) {
+		            	iCloudError++;
+		            	return false;
+		            }
+		        });
+		        if (iCloudError > 0)
+		        	$(".iCloudCell").html('<img class="redGlow" style="vertical-align:middle" src="red_button.png">');
+
+		        else
+		        	$(".iCloudCell").html('<img style="vertical-align:middle" src="green_button.png">');
+
+		        	
+	        });
+        }
+
+		function init()
+		{			
+			refresh();
+			var int=self.setInterval(function(){refresh()},60000);
+		}
+
+		</script>
+
+</head>
+
+<body onload="init()">
+<div id="main">
+	<div id="mainContainer">
+	<h2>Apple System Status</h2>		
+<table>
+<tr><td class="title" align=right>Services</td><td class="servicesCell"></td></tr>
+<tr><td class="title" align=right>Stores</td><td class="storesCell"></td></tr>
+<tr><td class="title" align=right>iCloud</td><td class="iCloudCell"></td></tr>
+</table>	
+	</div><!-- mainContainer -->
+	</div><!-- main -->	
+</body>
+</html>

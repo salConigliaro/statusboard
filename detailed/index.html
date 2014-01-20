@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Status Board</title>
+
+		<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+		<meta http-equiv="Cache-control" content="no-cache" />
+		
+		<style type="text/css">
+			@font-face
+			{
+				font-family: "Roadgeek2005SeriesD";
+				src: url("http://panic.com/fonts/Roadgeek 2005 Series D/Roadgeek 2005 Series D.otf");
+			}
+			
+			body, *
+			{
+			
+			}
+			body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td
+			{ 
+				margin: 0;
+				padding: 0;
+			}
+				
+			fieldset,img
+			{ 
+				border: 0;
+			}
+			
+				
+			/* Settin' up the page */
+			
+			html, body, #main
+			{
+				overflow: hidden; /* */
+			}
+			
+			body
+			{
+				color: white;
+				font-family: 'Roadgeek2005SeriesD', sans-serif;
+				font-size: 20px;
+				line-height: 24px;
+			}
+			body, html, #main
+			{
+				background: transparent !important;
+			}
+			#mainContainer
+			{
+				width: 250px;
+				height: 1224px;
+				text-align: center;
+			}
+			#mainContainer *
+			{
+				font-weight: normal;
+			}
+			.title {
+				color: #7e7e7e;
+			}
+			h1
+			{
+				font-size: 120px;
+				line-height: 120px;
+				margin-top: 15px;
+				margin-bottom: 28px;
+				color: white;
+				text-shadow:0px -2px 0px black;
+				text-transform: uppercase;
+			}
+			.green { background-color: green;}
+			.red { background-color: red; 
+						-webkit-animation-name: redPulse;
+		-webkit-animation-duration: 4s;
+		-webkit-animation-iteration-count: infinite;
+			}
+			h2
+			{
+				width: 200px;
+				margin: 5px auto;
+				padding-top: 10px;
+				font-size: 22px;
+				color: #7e7e7e;
+				text-transform: none;
+			}
+			table, td, th
+			td
+			{
+				font-size: 18px;
+				line-height: 26px;
+				vertical-align: middle;
+				padding-top: 3px;
+			}
+			table {
+				margin-top: 10px;
+			    width: 90%; margin-left: auto; margin-right: auto;
+			}
+			@-webkit-keyframes redPulse {
+				from { background-color: #BC1F18; -webkit-box-shadow: 0 0 9px #333; }
+				50% { background-color: #FF302B; -webkit-box-shadow: 0 0 18px #FF302B; }
+				to { background-color: #BC1F18; -webkit-box-shadow: 0 0 9px #333; }
+			}
+
+
+			.redGlow {
+				height: 219px;
+				width: 29px;
+				border-radius: 12px; 
+				-webkit-animation-name: redPulse;
+				-webkit-animation-duration: 4s;
+				-webkit-animation-iteration-count: infinite;
+			}
+	
+	
+		</style>
+		
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript">
+
+		function parseSection(service) {
+			$.each(service, function( key, value ) {
+			key=key.replace(/& /g,"");
+			key=key.replace(/ /g,"_");
+			key=key.replace(/,/g,"");
+			key=key.replace(/\./g,"_");
+			key=key.replace(/\(/g,"");
+			key=key.replace(/\)/g,"");
+			console.log(key);
+	            if (value.length == 1) {
+	            	$('#' + key).removeClass('green');
+	            	$('#' + key).addClass('red');
+	            }
+	            else {
+	            	$('#' + key).removeClass('red');
+	            	$('#' + key).addClass('green');
+	            }
+		     });
+		}
+		function refresh()
+		{
+			var req = new XMLHttpRequest();
+			var servicesError = 0;
+			var storesError = 0;
+			var iCloudError = 0;
+            
+            $.get('proxy.php', function(data) {
+	            //console.log(data.dashboard.Services);
+
+	            var services = data.dashboard.Services;
+	            parseSection(services);
+		        
+		        var stores = data.dashboard.Stores;
+		        parseSection(stores);
+		        	
+		        var icloud = data.dashboard.iCloud;
+		        parseSection(icloud);
+		        	
+	        });
+        }
+
+		function init()
+		{			
+			refresh();
+			var int=self.setInterval(function(){refresh()},60000);
+		}
+
+		</script>
+
+</head>
+
+<body onload="init()">
+<div id="main">
+	<div id="mainContainer">
+	<h2>Apple System Status</h2>		
+<table>
+<tr><td class="title" align=left colspan=2>Services</td></tr>
+<tr><td id="Apple_ID">Apple ID</td></tr>
+<tr><td id="Game_Center">Game Center</td></tr>
+<tr><td id="Maps">Maps</td></tr>
+<tr><td id="iMessage">iMessage</td></tr>
+<tr><td id="iChat">iChat</td></tr>
+<tr><td id="FaceTime">FaceTime</td></tr>
+<tr><td id="Siri">Siri</td></tr>
+<tr><td id="Dictation">Dictation</td></tr>
+<tr><td colspan=2 height=10></td></tr>
+<tr><td class="title" align=left colspan=2>Stores</td></tr>
+<tr><td id="App_Store">App Store</td></tr>
+<tr><td id="iTunes_Store">iTunes Store</td></tr>
+<tr><td id="Apple_Online_Store">Apple Online Store</td></tr>
+<tr><td id="Mac_App_Store">Mac App Store</td></tr>
+<tr><td id="iBooks_Store">iBooks Store</td></tr>
+<tr><td id="Photo_Print_Products">Photo Print Products</td></tr>
+<tr><td colspan=2 height=10></td></tr>
+<tr><td class="title" align=left colspan=2>iCloud</td></tr>
+<tr><td id="Mail">Mail</td></tr>
+<tr><td id="Photos">Photos</td></tr>
+<tr><td id="iTunes_in_the_Cloud">iTunes in the Cloud</td></tr>
+<tr><td id="Contacts">Contacts</td></tr>
+<tr><td id="Documents_in_the_Cloud">Documents in the Cloud</td></tr>
+<tr><td id="iTunes_Match">iTunes Match</td></tr>
+<tr><td id="Calendar">Calendar</td></tr>
+<tr><td id="Backup">Backup</td></tr>
+<tr><td id="iCloud_Keychain">iCloud Keychain</td>
+<tr><td id="Reminders">Reminders</td></tr>
+<tr><td id="Find_My_iPhone_iPad_iPod_touch_and_Mac">Find My iPhone, iPad, iPod touch, and Mac</td></tr>
+<tr><td id="Web_Apps_iCloud_com">Web Apps (iCloud.com)</td></tr>
+<tr><td id="Bookmarks_iCloud_Tabs">Bookmarks & iCloud Tabs</td></tr>
+<tr><td id="Find_My_Friends">Find My Friends</td></tr>
+<tr><td id="Account_Sign_In">Account & Sign In</td></tr>
+<tr><td id="Notes">Notes</td></tr>
+<tr><td id="Back_to_My_Mac">Back to My Mac</td></tr>
+<tr><td id="Storage_Upgrades">Storage Upgrades</td></tr>
+<tr><td id="iWork_for_iCloud_beta">iWork for iCloud beta</td></tr>
+<tr><td id="iMovie_Theater">iMovie Theater</td></tr>
+</table>	
+	</div><!-- mainContainer -->
+	</div><!-- main -->	
+</body>
+</html>
