@@ -20,8 +20,8 @@ __Services__
 - iMessage
 - iChat
 - FaceTime
-- Siri
 - Dictation
+- Siri
  
  __Stores__
 - App Store
