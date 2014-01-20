@@ -3,10 +3,9 @@ statusboard
 
 This panel for Panic’s ‘Status Board‘ iPad app quickly shows you the status of Apple’s various services (iCloud, Services and Stores). It’s very handy for checking at a glance if any of Apple’s cloud services are having issues.
 
-You'll need the 'Status Board' iPad app from Panic (http://panic.com/statusboard/) and a webserver or a Dropbox account to host these files.
+You'll need the 'Status Board' iPad app from Panic (http://panic.com/statusboard/) and either a webserver or a Dropbox account to host these files.
 
-There are two versions of the panel: Summary and Detailed. The ‘Summary’ panel has one indicator for each of the 3 major services (Services, Stores & iCloud). The ‘Detailed’ panel has an indicator for each individual service.
-
+There are two versions of the panel: Summary and Detailed.
 ### Summary Panel
 This panel shows the status of Services, Stores and iCloud
 
