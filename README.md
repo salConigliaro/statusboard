@@ -7,7 +7,10 @@ You'll need the 'Status Board' iPad app from Panic (http://panic.com/statusboard
 
 There are two versions of the panel: Summary and Detailed. The ‘Summary’ panel has one indicator for each of the 3 major services (Services, Stores & iCloud). The ‘Detailed’ panel has an indicator for each individual service.
 
-## Detailed Panel
+### Summary Panel
+This panel shows the status of Services, Stores and iCloud
+
+### Detailed Panel
 This panel will show the status of the following services:
 
 __Services__
@@ -50,8 +53,6 @@ __iCloud__
 - iWork for iCloud beta
 - iMovie Theater
 
-## Summary Panel
-This panel shows the status of Services, Stores and iCloud
 
 ## Installation
 
