@@ -22,7 +22,7 @@ __Services__
 - FaceTime
 - Dictation
 - Siri
- 
+
  __Stores__
 - App Store
 - iTunes Store
