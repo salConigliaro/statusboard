@@ -3,7 +3,7 @@ statusboard
 
 This panel for Panic’s ‘Status Board‘ iPad app quickly shows you the status of Apple’s various services (iCloud, Services and Stores). It’s very handy for checking at a glance if any of Apple’s cloud services are having issues.
 
-You'll need the 'Status Board' iPad app from Panic (http://panic.com/statusboard/) and either a webserver or a Dropbox account to host these files.
+You'll need the 'Status Board' iPad app from Panic (http://panic.com/statusboard/) a webserver to host these files.
 
 There are two versions of the panel: Summary and Detailed.
 ### Summary Panel
@@ -55,12 +55,11 @@ __iCloud__
 
 ## Installation
 
-Simple install the contents of either 'detailed' or 'summary' somewhere accessible (webserver or DropBox folder).
+Simple install the contents of either 'detailed' or 'summary' somewhere accessible (webserver).
 
 Then add a DIY panel to StatusBoard (go into Edit Mode by tapping the 'gear' icon in the upper left of the iPad's screen. Drag a DIY panel onto the board).
 
-Then tap the DIY panel and select either DropBox or URL under 'Data Source'. 
-If you're using a webserver, enter the URL to the 'index.html' file that you uploaded. 
-For DropBox, select the appropriate folder.
+Tap the DIY panel and select URL under 'Data Source'. Enter the URL to the 'index.html' file that you uploaded. 
+
 
 ![screenshot](statusBoardThumb.jpg)
